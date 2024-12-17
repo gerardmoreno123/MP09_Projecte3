@@ -10,7 +10,7 @@
             <div class="card-body">
                 <div class="flex items-center mb-4">
                     <h2 class="text-xl font-bold mr-4">Pel·lícules</h2>
-                    <input type="text" class="bg-green-200 placeholder-gray-700 input input-bordered" placeholder="Cerca per títol..." id="searchInput">
+                    <input type="text" class="bg-green-200 placeholder-gray-700 input input-bordered" placeholder="Cerca per títol..." id="searchInput" data-table="filmsTable">
                     <div class="flex-grow"></div>
                     <a href="{{ route('films.create') }}" class="btn btn-green">Crear Pel·lícula</a>
                 </div>

@@ -10,7 +10,7 @@
             <div class="card-body">
                 <div class="flex items-center mb-4">
                     <h2 class="text-xl font-bold mr-4">Gats</h2>
-                    <input type="text" class="bg-orange-200 placeholder-gray-700 input input-bordered" placeholder="Cerca per nom..." id="searchInput">
+                    <input type="text" class="bg-orange-200 placeholder-gray-700 input input-bordered" placeholder="Cerca per nom..." id="searchInput" data-table="catsTable">
                     <div class="flex-grow"></div>
                     <a href="{{ route('cats.create') }}" class="btn btn-orange">Crear Gat</a>
                 </div>

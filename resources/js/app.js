@@ -1,26 +1,33 @@
 import './bootstrap';
 
-// Función para realizar la búsqueda en tiempo real
-document.getElementById('searchInput').addEventListener('input', function() {
-    const searchQuery = this.value.toLowerCase(); // Convertir la búsqueda a minúsculas
-    const rows = document.querySelectorAll('#filmsTable tbody tr'); // Obtener todas las filas de la tabla
+// Funció genèrica per a filtrar les files de qualsevol taula
+document.querySelectorAll('input[data-table]').forEach(function(input) {
+    input.addEventListener('input', function() {
+        const tableId = this.getAttribute('data-table'); // Obtenim l'ID de la taula des de data-table
+        const searchQuery = this.value.toLowerCase();
+        const rows = document.querySelectorAll(`#${tableId} tbody tr`); // Obtenim totes les files de la taula
 
-    rows.forEach(function(row) {
-        const titleCell = row.querySelector('.title'); // Obtener la celda del título
-        const titleText = titleCell.textContent.toLowerCase(); // Convertir el texto del título a minúsculas
+        rows.forEach(function(row) {
+            const relevantCell = row.querySelector('.name') || row.querySelector('.title');
+            if (relevantCell) {
+                const cellText = relevantCell.textContent.toLowerCase();
 
-        // Si el texto del título contiene la búsqueda, mostrar la fila; de lo contrario, ocultarla
-        if (titleText.includes(searchQuery)) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
+                // Mostrem o amaguem la fila segons el text de cerca
+                if (cellText.includes(searchQuery)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        });
     });
 });
 
+
+// Funció per a obrir i tancar el modal de eliminació
 window.openDeleteModal = function(button) {
     const form = document.getElementById('deleteForm');
-    form.action = button.getAttribute('data-url'); // Usar data-url del botón
+    form.action = button.getAttribute('data-url');
     document.getElementById('deleteModal').classList.remove('hidden');
 };
 
